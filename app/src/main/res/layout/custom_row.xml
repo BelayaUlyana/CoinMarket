@@ -1,111 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view_friend"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true">
+    android:layout_margin="5dp"
+    android:onClick="onMyButtonClick"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="5dp"
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onMyButtonClick"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="5dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/linearLoyout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image">
-
-
-            <LinearLayout
-                android:id="@+id/linearLoyout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:divider="@drawable/divider"
-                android:dividerPadding="2dp"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:showDividers="middle"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/symbol"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="SYMB"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="name" />
-            </LinearLayout>
+            android:divider="@drawable/divider"
+            android:dividerPadding="2dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:showDividers="middle"
+            android:weightSum="1">
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/name"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/linearLoyout1"
-                android:layout_alignBottom="@+id/linearLoyout1"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:layout_margin="5dp"
-                android:text="$" />
+                android:textSize="14sp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
 
-            <LinearLayout
+        <TextView
+            android:id="@+id/price"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/linearLoyout1"
+            android:layout_alignBottom="@+id/linearLoyout1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLoyout1"
+            android:layout_margin="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/hr1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLoyout1"
-                android:layout_margin="5dp">
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@android:color/black" />
 
-                <TextView
-                    android:id="@+id/hr1"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="hr1" />
+            <TextView
+                android:id="@+id/hr24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@android:color/black" />
 
-                <TextView
-                    android:id="@+id/hr24"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="hr24" />
-
-                <TextView
-                    android:id="@+id/d7"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="7d" />
-            </LinearLayout>
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/d7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
     </RelativeLayout>
+</LinearLayout>
 
-</android.support.v7.widget.CardView>

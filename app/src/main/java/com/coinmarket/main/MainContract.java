@@ -1,9 +1,10 @@
 package com.coinmarket.main;
 
-import com.coinmarket.POJO.NameValuePair;
+
+import com.coinmarket.listPOJO.NameValuePair;
 
 public interface MainContract {
-    void showValuePair(NameValuePair nameValuePair);
+    void showInfo(NameValuePair nameValuePair);
     void showError(String error);
     void hideProgress();
 }

@@ -1,5 +1,5 @@
 
-package com.coinmarket.POJO;
+package com.coinmarket.listPOJO;
 
 import android.util.Log;
 

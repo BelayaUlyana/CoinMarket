@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.coinmarket.R;
-import com.coinmarket.POJO.NameValuePair;
+import com.coinmarket.listPOJO.NameValuePair;
 
 public class MainActivity extends AppCompatActivity implements MainContract {
 
@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity implements MainContract {
     ProgressDialog progressDialog;
 
 
-    public void showValuePair(NameValuePair nameValuePair) {
+    public void showInfo(NameValuePair nameValuePair) {
         adapter.addALL(nameValuePair.getData());
     }
+
 
     @Override
     public void showError(String error) {

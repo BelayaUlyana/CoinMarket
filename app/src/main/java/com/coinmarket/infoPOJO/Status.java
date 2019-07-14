@@ -1,5 +1,5 @@
 
-package com.coinmarket.POJO;
+package com.coinmarket.infoPOJO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
