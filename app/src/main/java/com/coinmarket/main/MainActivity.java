@@ -7,12 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coinmarket.R;
 import com.coinmarket.info.InfoActivity;
+import com.coinmarket.listPOJO.Datum;
 import com.coinmarket.listPOJO.NameValuePair;
 
 public class MainActivity extends AppCompatActivity implements MainContract {
@@ -46,7 +46,18 @@ public class MainActivity extends AppCompatActivity implements MainContract {
         presenter = new MainPresenter(this);
         presenter.getDatum();
         RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
-        adapter = new MainAdapter(this);
+        adapter = new MainAdapter(this, new MainAdapter.ItemClickListener() {
+            @Override
+            public void click(int pos, Datum datum) {
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("datum", datum);
+                intent.putExtra("quote", datum.getQuote());
+                startActivity(intent);
+            }
+        });
+
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -56,21 +67,6 @@ public class MainActivity extends AppCompatActivity implements MainContract {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-    }
-
-
-    public void onMyButtonClick(View view) {
-
-        price = view.findViewById(R.id.price);
-        textViewHR1 = view.findViewById(R.id.hr1);
-        textViewHR24 = view.findViewById(R.id.hr24);
-        textViewD7 = view.findViewById(R.id.d7);
-        String percentChange = textViewHR1.getText().toString().concat("\n").concat(textViewHR24.getText().toString()).concat("\n").concat(textViewD7.getText().toString());
-        Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-
-        intent.putExtra("price", price.getText().toString().concat("\n19.01.1970"));
-        intent.putExtra("percentChange", percentChange);
-        startActivity(intent);
     }
 
 }

@@ -13,8 +13,8 @@ import com.coinmarket.R;
 public class GraphFragment extends Fragment {
 
 
-    public static SignalFragment newInstance(int i) {
-        SignalFragment fragment = new SignalFragment();
+    public static GraphFragment newInstance() {
+        GraphFragment fragment = new GraphFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -33,7 +33,7 @@ public class GraphFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_graph, container, false);
 
         TextView rank = view.findViewById(R.id.rank);
-        rank.setText("radgsfafvfd");
+        rank.setText("text");
         rank.setBackgroundColor(Color.BLUE);
         return view;
 

@@ -22,16 +22,22 @@ import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolder> {
 
-    private List<Datum> valuePairList;
+    public interface ItemClickListener {
+        void click(int pos, Datum datum);
+    }
+
+    private List<Datum> datumList;
     Context context;
     private LayoutInflater mInflater;
+    private ItemClickListener listener;
 
-    public MainAdapter(Context context) {
+    public MainAdapter(Context context, ItemClickListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     void addALL(List<Datum> valuePair) {
-        this.valuePairList = valuePair;
+        this.datumList = valuePair;
         notifyDataSetChanged();
     }
 
@@ -66,20 +72,27 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DatumViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DatumViewHolder holder, final int position) {
         String imageUrl = "https://res.cloudinary.com/dxi90ksom/image/upload/";
-        USD usd = valuePairList.get(position).getQuote().getUSD();
-        holder.textViewName.setText(valuePairList.get(position).getName());
-        holder.textViewSymbol.setText(valuePairList.get(position).getSymbol());
+        USD usd = datumList.get(position).getQuote().getUSD();
+        holder.textViewName.setText(datumList.get(position).getName());
+        holder.textViewSymbol.setText(datumList.get(position).getSymbol());
         holder.textViewPrice.setText(decFormat("$#.###", usd.getPrice()));
         holder.textViewHR1.setText(setTextColor("hr1: ", "#.##%", usd.getPercentChange1h()));
         holder.textViewHR24.setText(setTextColor("hr24: ", "#.##%", usd.getPercentChange24h()));
         holder.textViewD7.setText(setTextColor("d7: ", "#.##%", usd.getPercentChange7d()));
         Glide.with(holder.imageView.getContext())
-                .load(imageUrl.concat(valuePairList.get(position).getSymbol().toLowerCase()).concat(".png"))
+                .load(imageUrl.concat(datumList.get(position).getSymbol().toLowerCase()).concat(".png"))
                 .placeholder(R.drawable.progress_animation)
                 .error(R.drawable.ic_mtrl_chip_checked_circle)
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.click(position, datumList.get(position));
+            }
+        });
     }
 
     SpannableString setTextColor(String str, String format, Double price) {
@@ -100,8 +113,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
 
     @Override
     public int getItemCount() {
-        if (valuePairList == null)
+        if (datumList == null)
             return 0;
-        else return valuePairList.size();
+        else return datumList.size();
     }
 }

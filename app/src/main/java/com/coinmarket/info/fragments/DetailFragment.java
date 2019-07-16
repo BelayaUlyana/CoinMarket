@@ -10,6 +10,14 @@ import com.coinmarket.R;
 
 public class DetailFragment extends Fragment {
 
+    public static DetailFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        DetailFragment fragment = new DetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

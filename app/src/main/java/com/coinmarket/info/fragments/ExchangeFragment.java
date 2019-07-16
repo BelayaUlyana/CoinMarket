@@ -10,6 +10,14 @@ import com.coinmarket.R;
 
 public class ExchangeFragment extends Fragment {
 
+    public static ExchangeFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ExchangeFragment fragment = new ExchangeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -1,12 +1,15 @@
 
 package com.coinmarket.listPOJO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Datum {
+public class Datum implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -50,6 +53,46 @@ public class Datum {
     @SerializedName("quote")
     @Expose
     private Quote quote;
+
+    // конструктор, считывающий данные из Parcel
+    private Datum(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        symbol = in.readString();
+        slug = in.readString();
+        if (in.readByte() == 0) {
+            numMarketPairs = null;
+        } else {
+            numMarketPairs = in.readInt();
+        }
+        dateAdded = in.readString();
+        tags = in.createStringArrayList();
+        if (in.readByte() == 0) {
+            maxSupply = null;
+        } else {
+            maxSupply = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            circulatingSupply = null;
+        } else {
+            circulatingSupply = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            totalSupply = null;
+        } else {
+            totalSupply = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            cmcRank = null;
+        } else {
+            cmcRank = in.readInt();
+        }
+        lastUpdated = in.readString();
+    }
 
     public Integer getId() {
         return id;
@@ -162,5 +205,31 @@ public class Datum {
     public void setQuote(Quote quote) {
         this.quote = quote;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    // упаковываем объект в Parcel
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeValue(quote);
+    }
+
+
+    public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+        // распаковываем объект из Parcel
+        @Override
+        public Datum createFromParcel(Parcel in) {
+            return new Datum(in);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 
 }
