@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements MainContract {
 
     public void onMyButtonClick(View view) {
 
-
         price = view.findViewById(R.id.price);
         textViewHR1 = view.findViewById(R.id.hr1);
         textViewHR24 = view.findViewById(R.id.hr24);
