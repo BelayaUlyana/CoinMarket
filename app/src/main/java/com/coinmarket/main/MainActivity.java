@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coinmarket.R;
@@ -18,9 +17,7 @@ import com.coinmarket.listPOJO.NameValuePair;
 public class MainActivity extends AppCompatActivity implements MainContract {
 
     private MainAdapter adapter;
-    private MainPresenter presenter;
     ProgressDialog progressDialog;
-    TextView price, textViewHR1, textViewHR24, textViewD7;
 
     public void showInfo(NameValuePair nameValuePair) {
         adapter.addALL(nameValuePair.getData());
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainContract {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new MainPresenter(this);
+        MainPresenter presenter = new MainPresenter(this);
         presenter.getDatum();
         RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
         adapter = new MainAdapter(this, new MainAdapter.ItemClickListener() {

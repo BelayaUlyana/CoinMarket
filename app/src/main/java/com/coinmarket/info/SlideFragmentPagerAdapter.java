@@ -19,12 +19,12 @@ public class SlideFragmentPagerAdapter extends FragmentStatePagerAdapter {
         return titles.get(position);
     }
 
-    public void addFragment(Fragment fragment, String s) {
+    void addFragment(Fragment fragment, String s) {
         pages.add(fragment);
         titles.add(s);
     }
 
-    public SlideFragmentPagerAdapter(FragmentManager fm) {
+    SlideFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

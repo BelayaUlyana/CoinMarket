@@ -18,15 +18,7 @@ import com.coinmarket.listPOJO.Quote;
 public class InfoActivity extends AppCompatActivity implements SignalFragment.SignalListener {
     static final String TAG = "LOG  ";
 
-    private ViewPager pager;
-    private SlideFragmentPagerAdapter pagerAdapter;
-    private DetailFragment detailFragment;
-    private ExchangeFragment exchangeFragment;
-    private GraphFragment graphFragment;
     private SignalFragment signalFragment;
-    private TabLayout tabLayout;
-    private Datum datum;
-    private Quote quote;
     TextView tvPrice, percentChange;
 
     @Override
@@ -34,8 +26,8 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        datum = getIntent().getParcelableExtra("datum");
-        quote = getIntent().getParcelableExtra("quote");
+        Datum datum = getIntent().getParcelableExtra("datum");
+        Quote quote = getIntent().getParcelableExtra("quote");
         Log.d(TAG, "datum = " + datum);
         Log.d(TAG, "quote = " + datum.getQuote());
         Log.d(TAG, "usd = " + datum.getQuote().getUSD());
@@ -53,14 +45,13 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
 //                .concat("\n").concat(usd.getPercentChange24h().toString())
 //                .concat("\n").concat(usd.getPercentChange7d().toString());
 
-
     }
 
     private void initViewPager() {
 
-        detailFragment = DetailFragment.newInstance();
-        exchangeFragment = ExchangeFragment.newInstance();
-        graphFragment = GraphFragment.newInstance();
+        DetailFragment detailFragment = DetailFragment.newInstance();
+        ExchangeFragment exchangeFragment = ExchangeFragment.newInstance();
+        GraphFragment graphFragment = GraphFragment.newInstance();
         signalFragment = SignalFragment.newInstance();
 
         tvPrice = findViewById(R.id.price);
@@ -69,17 +60,17 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         percentChange.setText(getIntent().getExtras().getString("percentChange"));
 
 
-        pagerAdapter = new SlideFragmentPagerAdapter(getSupportFragmentManager());
+        SlideFragmentPagerAdapter pagerAdapter = new SlideFragmentPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(detailFragment, "Detail");
         pagerAdapter.addFragment(exchangeFragment, "Exchange");
         pagerAdapter.addFragment(graphFragment, "Graph");
         pagerAdapter.addFragment(signalFragment, "Signal");
 
-        pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
         pager.setOffscreenPageLimit(2);
 
-        tabLayout = findViewById(R.id.tabLayout);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(pager);
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

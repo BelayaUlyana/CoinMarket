@@ -27,11 +27,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
     }
 
     private List<Datum> datumList;
-    Context context;
-    private LayoutInflater mInflater;
+    private Context context;
     private ItemClickListener listener;
 
-    public MainAdapter(Context context, ItemClickListener listener) {
+    MainAdapter(Context context, ItemClickListener listener) {
         this.context = context;
         this.listener = listener;
     }
@@ -48,7 +47,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
         private final TextView textViewName, textViewSymbol, textViewPrice, textViewHR1, textViewHR24, textViewD7;
 
 
-        public DatumViewHolder(View itemView) {
+        DatumViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
 
@@ -66,7 +65,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
     @NonNull
     @Override
     public DatumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        mInflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
         View view = mInflater.inflate(R.layout.custom_row, parent, false);
         return new DatumViewHolder(view);
     }
