@@ -15,25 +15,34 @@ import com.coinmarket.info.fragments.SignalFragment;
 import com.coinmarket.listPOJO.Datum;
 import com.coinmarket.listPOJO.Quote;
 
+import java.text.ParseException;
+
 public class InfoActivity extends AppCompatActivity implements SignalFragment.SignalListener {
     static final String TAG = "LOG  ";
 
     private SignalFragment signalFragment;
-    TextView tvPrice, percentChange;
+    private Datum datum;
+    private Quote quote;
+    TextView tvPrice, percentChange, tvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        Datum datum = getIntent().getParcelableExtra("datum");
-        Quote quote = getIntent().getParcelableExtra("quote");
+        datum = getIntent().getParcelableExtra("datum");
+        quote = getIntent().getParcelableExtra("quote");
+
         Log.d(TAG, "datum = " + datum);
-        Log.d(TAG, "quote = " + datum.getQuote());
-        Log.d(TAG, "usd = " + datum.getQuote().getUSD());
+        Log.d(TAG, "usd = " + quote.getUSD().getPrice());
 
         initUI();
-        initViewPager();
+        try {
+            initViewPager();
+            Log.d(TAG, "getDateAdded = " + datum.getDateAdded());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -47,7 +56,7 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
 
     }
 
-    private void initViewPager() {
+    private void initViewPager() throws ParseException {
 
         DetailFragment detailFragment = DetailFragment.newInstance();
         ExchangeFragment exchangeFragment = ExchangeFragment.newInstance();
@@ -55,9 +64,14 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         signalFragment = SignalFragment.newInstance();
 
         tvPrice = findViewById(R.id.price);
-        tvPrice.setText(getIntent().getExtras().getString("price"));
+        tvDate = findViewById(R.id.date);
         percentChange = findViewById(R.id.hr1);
-        percentChange.setText(getIntent().getExtras().getString("percentChange"));
+        Log.d(TAG, "getPrice = " + quote.getUSD().getPriceStr());
+
+
+        tvPrice.setText(quote.getUSD().getPriceStr());
+        tvDate.setText(datum.getDateAdded());
+        percentChange.setText(quote.getUSD().getStrPercentChange1h());
 
 
         SlideFragmentPagerAdapter pagerAdapter = new SlideFragmentPagerAdapter(getSupportFragmentManager());

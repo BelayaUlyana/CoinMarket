@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.coinmarket.R;
 import com.coinmarket.listPOJO.Datum;
+import com.coinmarket.listPOJO.Quote;
 import com.coinmarket.listPOJO.USD;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolder> {
 
     public interface ItemClickListener {
-        void click(int pos, Datum datum);
+        void click(int pos, Datum datum, Quote quote);
     }
 
     private List<Datum> datumList;
@@ -89,7 +93,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.click(position, datumList.get(position));
+                Log.d(TAG, "MainAdapter quote = " + datumList.get(position).getQuote());
+                listener.click(position, datumList.get(position), datumList.get(position).getQuote());
             }
         });
     }

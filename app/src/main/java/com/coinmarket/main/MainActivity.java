@@ -13,6 +13,9 @@ import com.coinmarket.R;
 import com.coinmarket.info.InfoActivity;
 import com.coinmarket.listPOJO.Datum;
 import com.coinmarket.listPOJO.NameValuePair;
+import com.coinmarket.listPOJO.Quote;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class MainActivity extends AppCompatActivity implements MainContract {
 
@@ -45,11 +48,12 @@ public class MainActivity extends AppCompatActivity implements MainContract {
         RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
         adapter = new MainAdapter(this, new MainAdapter.ItemClickListener() {
             @Override
-            public void click(int pos, Datum datum) {
+            public void click(int pos, Datum datum, Quote quote) {
 
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("datum", datum);
-                intent.putExtra("quote", datum.getQuote());
+                Log.d(TAG, "MainActivity quote = " + quote);
+                intent.putExtra("quote", quote);
                 startActivity(intent);
             }
         });

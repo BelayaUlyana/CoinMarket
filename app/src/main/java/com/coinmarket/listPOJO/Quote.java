@@ -13,7 +13,8 @@ public class Quote implements Parcelable {
     @Expose
     private USD uSD;
 
-    Quote(Parcel in) {
+    private Quote(Parcel in) {
+        uSD = in.readParcelable(getClass().getClassLoader());
     }
 
 
@@ -32,7 +33,7 @@ public class Quote implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeValue(uSD);
+        parcel.writeParcelable(uSD, i);
     }
 
     public static final Creator<Quote> CREATOR = new Creator<Quote>() {

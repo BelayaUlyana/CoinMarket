@@ -1,11 +1,16 @@
 
 package com.coinmarket.listPOJO;
 
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.text.DecimalFormat;
 
 public class USD implements Parcelable {
 
@@ -31,7 +36,7 @@ public class USD implements Parcelable {
     @Expose
     private String lastUpdated;
 
-    protected USD(Parcel in) {
+    USD(Parcel in) {
         if (in.readByte() == 0) {
             price = null;
         } else {
@@ -96,6 +101,9 @@ public class USD implements Parcelable {
     public Double getPercentChange1h() {
         return percentChange1h;
     }
+    public SpannableString getStrPercentChange1h() {
+        return setTextColor(getPercentChange1h());
+    }
 
     public void setPercentChange1h(Double percentChange1h) {
         this.percentChange1h = percentChange1h;
@@ -105,12 +113,20 @@ public class USD implements Parcelable {
         return percentChange24h;
     }
 
+    public SpannableString getStrPercentChange24h() {
+        return setTextColor(getPercentChange24h());
+    }
+
     public void setPercentChange24h(Double percentChange24h) {
         this.percentChange24h = percentChange24h;
     }
 
     public Double getPercentChange7d() {
         return percentChange7d;
+    }
+
+    public SpannableString getStrPercentChange7d() {
+        return setTextColor(getPercentChange7d());
     }
 
     public void setPercentChange7d(Double percentChange7d) {
@@ -177,6 +193,24 @@ public class USD implements Parcelable {
             parcel.writeDouble(marketCap);
         }
         parcel.writeString(lastUpdated);
+    }
+
+    public String getPriceStr() {
+        return new DecimalFormat("$#.###").format(getPrice());
+    }
+
+    public String decFormat(String str) {
+        return new DecimalFormat("#.###").format(getPrice());
+    }
+
+    private SpannableString setTextColor(Double value) {
+        SpannableString spannableString = new SpannableString(decFormat(value.toString()));
+        if (value > 0) {
+            spannableString.setSpan(new ForegroundColorSpan(Color.GREEN), 0, spannableString.length(), 0);
+        } else {
+            spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, spannableString.length(), 0);
+        }
+        return spannableString;
     }
 
 

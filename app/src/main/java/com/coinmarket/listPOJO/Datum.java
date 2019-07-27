@@ -7,6 +7,9 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Datum implements Parcelable {
@@ -56,42 +59,44 @@ public class Datum implements Parcelable {
 
     // конструктор, считывающий данные из Parcel
     private Datum(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
-        name = in.readString();
-        symbol = in.readString();
-        slug = in.readString();
-        if (in.readByte() == 0) {
-            numMarketPairs = null;
-        } else {
-            numMarketPairs = in.readInt();
-        }
+
+        quote = in.readParcelable(getClass().getClassLoader());
+//        if (in.readByte() == 0) {
+//            id = null;
+//        } else {
+//            id = in.readInt();
+//        }
+//        name = in.readString();
+//        symbol = in.readString();
+//        slug = in.readString();
+//        if (in.readByte() == 0) {
+//            numMarketPairs = null;
+//        } else {
+//            numMarketPairs = in.readInt();
+//        }
         dateAdded = in.readString();
-        tags = in.createStringArrayList();
-        if (in.readByte() == 0) {
-            maxSupply = null;
-        } else {
-            maxSupply = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            circulatingSupply = null;
-        } else {
-            circulatingSupply = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            totalSupply = null;
-        } else {
-            totalSupply = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            cmcRank = null;
-        } else {
-            cmcRank = in.readInt();
-        }
-        lastUpdated = in.readString();
+//        tags = in.createStringArrayList();
+//        if (in.readByte() == 0) {
+//            maxSupply = null;
+//        } else {
+//            maxSupply = in.readDouble();
+//        }
+//        if (in.readByte() == 0) {
+//            circulatingSupply = null;
+//        } else {
+//            circulatingSupply = in.readDouble();
+//        }
+//        if (in.readByte() == 0) {
+//            totalSupply = null;
+//        } else {
+//            totalSupply = in.readDouble();
+//        }
+//        if (in.readByte() == 0) {
+//            cmcRank = null;
+//        } else {
+//            cmcRank = in.readInt();
+//        }
+//        lastUpdated = in.readString();
     }
 
     public Integer getId() {
@@ -134,8 +139,8 @@ public class Datum implements Parcelable {
         this.numMarketPairs = numMarketPairs;
     }
 
-    public String getDateAdded() {
-        return dateAdded;
+    public String getDateAdded() throws ParseException {
+        return dateFormat(dateAdded);
     }
 
     public void setDateAdded(String dateAdded) {
@@ -215,7 +220,8 @@ public class Datum implements Parcelable {
     // упаковываем объект в Parcel
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeValue(quote);
+        parcel.writeParcelable(quote, i);
+        parcel.writeString(dateAdded);
     }
 
 
@@ -231,5 +237,13 @@ public class Datum implements Parcelable {
             return new Datum[size];
         }
     };
+
+    private String dateFormat(String str) throws ParseException {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = inputFormat.parse(str);
+        String formattedDate = outputFormat.format(date);
+        return formattedDate;
+    }
 
 }
