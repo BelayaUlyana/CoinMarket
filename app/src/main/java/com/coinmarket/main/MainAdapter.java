@@ -1,11 +1,8 @@
 package com.coinmarket.main;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +16,6 @@ import com.coinmarket.listPOJO.Datum;
 import com.coinmarket.listPOJO.Quote;
 import com.coinmarket.listPOJO.USD;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -80,10 +76,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
         USD usd = datumList.get(position).getQuote().getUSD();
         holder.textViewName.setText(datumList.get(position).getName());
         holder.textViewSymbol.setText(datumList.get(position).getSymbol());
-        holder.textViewPrice.setText(decFormat("$#.###", usd.getPrice()));
-        holder.textViewHR1.setText(setTextColor("hr1: ", "#.##%", usd.getPercentChange1h()));
-        holder.textViewHR24.setText(setTextColor("hr24: ", "#.##%", usd.getPercentChange24h()));
-        holder.textViewD7.setText(setTextColor("d7: ", "#.##%", usd.getPercentChange7d()));
+        holder.textViewPrice.setText(usd.getPriceStr());
+        holder.textViewHR1.setText(usd.getStrPercentChange1h());
+        holder.textViewHR24.setText(usd.getStrPercentChange24h());
+        holder.textViewD7.setText(usd.getStrPercentChange7d());
         Glide.with(holder.imageView.getContext())
                 .load(imageUrl.concat(datumList.get(position).getSymbol().toLowerCase()).concat(".png"))
                 .placeholder(R.drawable.progress_animation)
@@ -98,22 +94,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
             }
         });
     }
-
-    SpannableString setTextColor(String str, String format, Double price) {
-        SpannableString spannableString = new SpannableString(str.concat(decFormat(format, price)));
-        if (price > 0) {
-            spannableString.setSpan(new ForegroundColorSpan(Color.GREEN), str.length(), spannableString.length(), 0);
-        } else {
-            spannableString.setSpan(new ForegroundColorSpan(Color.RED), str.length(), spannableString.length(), 0);
-        }
-        return spannableString;
-    }
-
-    String decFormat(String format, Double price) {
-        DecimalFormat df = new DecimalFormat(format);
-        return df.format(price);
-    }
-
 
     @Override
     public int getItemCount() {

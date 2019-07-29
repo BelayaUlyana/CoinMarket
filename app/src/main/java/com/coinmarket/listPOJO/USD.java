@@ -4,7 +4,7 @@ package com.coinmarket.listPOJO;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
 import com.google.gson.annotations.Expose;
@@ -86,6 +86,10 @@ public class USD implements Parcelable {
         return price;
     }
 
+    public String getPriceStr() {
+        return new DecimalFormat("$#.###").format(getPrice());
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -101,7 +105,8 @@ public class USD implements Parcelable {
     public Double getPercentChange1h() {
         return percentChange1h;
     }
-    public SpannableString getStrPercentChange1h() {
+
+    public SpannableStringBuilder getStrPercentChange1h() {
         return setTextColor(getPercentChange1h());
     }
 
@@ -113,7 +118,7 @@ public class USD implements Parcelable {
         return percentChange24h;
     }
 
-    public SpannableString getStrPercentChange24h() {
+    public SpannableStringBuilder getStrPercentChange24h() {
         return setTextColor(getPercentChange24h());
     }
 
@@ -125,7 +130,7 @@ public class USD implements Parcelable {
         return percentChange7d;
     }
 
-    public SpannableString getStrPercentChange7d() {
+    public SpannableStringBuilder getStrPercentChange7d() {
         return setTextColor(getPercentChange7d());
     }
 
@@ -195,16 +200,9 @@ public class USD implements Parcelable {
         parcel.writeString(lastUpdated);
     }
 
-    public String getPriceStr() {
-        return new DecimalFormat("$#.###").format(getPrice());
-    }
 
-    public String decFormat(String str) {
-        return new DecimalFormat("#.###").format(getPrice());
-    }
-
-    private SpannableString setTextColor(Double value) {
-        SpannableString spannableString = new SpannableString(decFormat(value.toString()));
+    private SpannableStringBuilder setTextColor(Double value) {
+        SpannableStringBuilder spannableString = new SpannableStringBuilder(new DecimalFormat("#.##").format(value).concat("%"));
         if (value > 0) {
             spannableString.setSpan(new ForegroundColorSpan(Color.GREEN), 0, spannableString.length(), 0);
         } else {
@@ -212,6 +210,5 @@ public class USD implements Parcelable {
         }
         return spannableString;
     }
-
 
 }

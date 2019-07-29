@@ -23,7 +23,7 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
     private SignalFragment signalFragment;
     private Datum datum;
     private Quote quote;
-    TextView tvPrice, percentChange, tvDate;
+    TextView tvPrice, percentChangeHR1, percentChangeHR24, percentChangeD7, tvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +36,12 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         Log.d(TAG, "datum = " + datum);
         Log.d(TAG, "usd = " + quote.getUSD().getPrice());
 
-        initUI();
         try {
             initViewPager();
             Log.d(TAG, "getDateAdded = " + datum.getDateAdded());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-    }
-
-
-    private void initUI() {
-
-//        USD usd = datum.getQuote().getUSD();
-//        String percentChange = usd.getPercentChange1h().toString()
-//                .concat("\n").concat(usd.getPercentChange24h().toString())
-//                .concat("\n").concat(usd.getPercentChange7d().toString());
 
     }
 
@@ -65,14 +54,18 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
 
         tvPrice = findViewById(R.id.price);
         tvDate = findViewById(R.id.date);
-        percentChange = findViewById(R.id.hr1);
-        Log.d(TAG, "getPrice = " + quote.getUSD().getPriceStr());
+        percentChangeHR1 = findViewById(R.id.hr1);
+        percentChangeHR24 = findViewById(R.id.hr24);
+        percentChangeD7 = findViewById(R.id.d7);
+
+//        Log.d(TAG, "getPrice = " + quote.getUSD().getPriceStr());
 
 
         tvPrice.setText(quote.getUSD().getPriceStr());
         tvDate.setText(datum.getDateAdded());
-        percentChange.setText(quote.getUSD().getStrPercentChange1h());
-
+        percentChangeHR1.setText(quote.getUSD().getStrPercentChange1h().append((" 1h")));
+        percentChangeHR24.setText(quote.getUSD().getStrPercentChange24h().append(" 1d"));
+        percentChangeD7.setText(quote.getUSD().getStrPercentChange7d().append(" 7d"));
 
         SlideFragmentPagerAdapter pagerAdapter = new SlideFragmentPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(detailFragment, "Detail");
