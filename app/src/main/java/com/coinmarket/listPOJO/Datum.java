@@ -61,42 +61,9 @@ public class Datum implements Parcelable {
     private Datum(Parcel in) {
 
         quote = in.readParcelable(getClass().getClassLoader());
-//        if (in.readByte() == 0) {
-//            id = null;
-//        } else {
-//            id = in.readInt();
-//        }
-//        name = in.readString();
-//        symbol = in.readString();
-//        slug = in.readString();
-//        if (in.readByte() == 0) {
-//            numMarketPairs = null;
-//        } else {
-//            numMarketPairs = in.readInt();
-//        }
         dateAdded = in.readString();
-//        tags = in.createStringArrayList();
-//        if (in.readByte() == 0) {
-//            maxSupply = null;
-//        } else {
-//            maxSupply = in.readDouble();
-//        }
-//        if (in.readByte() == 0) {
-//            circulatingSupply = null;
-//        } else {
-//            circulatingSupply = in.readDouble();
-//        }
-//        if (in.readByte() == 0) {
-//            totalSupply = null;
-//        } else {
-//            totalSupply = in.readDouble();
-//        }
-//        if (in.readByte() == 0) {
-//            cmcRank = null;
-//        } else {
-//            cmcRank = in.readInt();
-//        }
-//        lastUpdated = in.readString();
+        name = in.readString();
+        symbol = in.readString();
     }
 
     public Integer getId() {
@@ -222,6 +189,8 @@ public class Datum implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeParcelable(quote, i);
         parcel.writeString(dateAdded);
+        parcel.writeString(name);
+        parcel.writeString(symbol);
     }
 
 

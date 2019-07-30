@@ -14,25 +14,29 @@
             android:id="@+id/rank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rank" />
+            android:text="Rank"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/marcetCap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Marcet Cap" />
+            android:text="Marcet Cap"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/supply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Supply" />
+            android:text="Supply"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Amount" />
+            android:text="Amount"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,25 +49,25 @@
             android:id="@+id/valueRank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="852" />
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/valueMarketCap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="520" />
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/valueSupply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="8520" />
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/valueAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="8520" />
+            android:gravity="end" />
     </LinearLayout>
 
 </LinearLayout>

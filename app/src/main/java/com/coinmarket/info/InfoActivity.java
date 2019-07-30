@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.coinmarket.R;
@@ -29,13 +31,10 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         datum = getIntent().getParcelableExtra("datum");
         quote = getIntent().getParcelableExtra("quote");
-
-        Log.d(TAG, "datum = " + datum);
-        Log.d(TAG, "usd = " + quote.getUSD().getPrice());
-
         try {
             initViewPager();
             Log.d(TAG, "getDateAdded = " + datum.getDateAdded());
@@ -58,9 +57,7 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         percentChangeHR24 = findViewById(R.id.hr24);
         percentChangeD7 = findViewById(R.id.d7);
 
-//        Log.d(TAG, "getPrice = " + quote.getUSD().getPriceStr());
-
-
+        getSupportActionBar().setTitle(datum.getSymbol().concat(" ").concat(datum.getName()));
         tvPrice.setText(quote.getUSD().getPriceStr());
         tvDate.setText(datum.getDateAdded());
         percentChangeHR1.setText(quote.getUSD().getStrPercentChange1h().append((" 1h")));
@@ -98,9 +95,13 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
             public void onPageScrollStateChanged(int state) {
             }
         });
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.info_toolbar, menu);
+        return true;
+    }
 
     @Override
     public void add() {

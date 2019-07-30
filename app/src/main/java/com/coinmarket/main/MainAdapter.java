@@ -3,6 +3,7 @@ package com.coinmarket.main;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,9 +78,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.DatumViewHolde
         holder.textViewName.setText(datumList.get(position).getName());
         holder.textViewSymbol.setText(datumList.get(position).getSymbol());
         holder.textViewPrice.setText(usd.getPriceStr());
-        holder.textViewHR1.setText(usd.getStrPercentChange1h());
-        holder.textViewHR24.setText(usd.getStrPercentChange24h());
-        holder.textViewD7.setText(usd.getStrPercentChange7d());
+        holder.textViewHR1.setText(new SpannableStringBuilder("1hr: ").append(usd.getStrPercentChange1h()));
+        holder.textViewHR24.setText(new SpannableStringBuilder("24hr: ").append(usd.getStrPercentChange24h()));
+        holder.textViewD7.setText(new SpannableStringBuilder("1d: ").append(usd.getStrPercentChange7d()));
         Glide.with(holder.imageView.getContext())
                 .load(imageUrl.concat(datumList.get(position).getSymbol().toLowerCase()).concat(".png"))
                 .placeholder(R.drawable.progress_animation)

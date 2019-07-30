@@ -1,8 +1,6 @@
 
 package com.coinmarket.listPOJO;
 
-import android.util.Log;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -26,8 +24,6 @@ public class NameValuePair {
     }
 
     public List<Datum> getData() {
-        Log.e("LOG ", data.toString());
-
         return data;
     }
 

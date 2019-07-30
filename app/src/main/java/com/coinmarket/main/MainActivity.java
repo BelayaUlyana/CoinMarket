@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Toast;
 
 import com.coinmarket.R;
@@ -45,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements MainContract {
         setContentView(R.layout.activity_main);
         MainPresenter presenter = new MainPresenter(this);
         presenter.getDatum();
+
         RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
         adapter = new MainAdapter(this, new MainAdapter.ItemClickListener() {
             @Override
             public void click(int pos, Datum datum, Quote quote) {
-
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("datum", datum);
                 Log.d(TAG, "MainActivity quote = " + quote);
@@ -58,11 +60,13 @@ public class MainActivity extends AppCompatActivity implements MainContract {
             }
         });
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.activity_main_title);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
 
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Loading....");
@@ -70,4 +74,9 @@ public class MainActivity extends AppCompatActivity implements MainContract {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar, menu);
+        return true;
+    }
 }

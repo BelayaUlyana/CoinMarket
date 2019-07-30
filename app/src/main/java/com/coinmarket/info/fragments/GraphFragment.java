@@ -1,6 +1,5 @@
 package com.coinmarket.info.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,11 +30,11 @@ public class GraphFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_graph, container, false);
+        TextView valueRank = view.findViewById(R.id.valueRank);
+        TextView valueMarketCap = view.findViewById(R.id.valueMarketCap);
+        TextView valueSupply = view.findViewById(R.id.valueSupply);
+        TextView valueAmount = view.findViewById(R.id.valueAmount);
 
-        TextView rank = view.findViewById(R.id.rank);
-        rank.setText("text");
-        rank.setBackgroundColor(Color.BLUE);
         return view;
-
     }
 }

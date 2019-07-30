@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context=".info.InfoActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,8 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/date"
@@ -69,8 +72,8 @@
         android:layout_height="wrap_content"
         android:background="@color/gray"
         app:tabIndicatorHeight="2dp"
-        app:tabTextColor="@color/white"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        app:tabTextColor="@color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
