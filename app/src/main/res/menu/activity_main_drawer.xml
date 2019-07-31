@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/favourites"
+            android:icon="@drawable/star"
+            android:title="@string/c_menu_favourites" />
+        <item
+            android:id="@+id/list"
+            android:icon="@drawable/list"
+            android:title="@string/c_menu_list" />
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/notification"
+            android:title="@string/c_menu_notifications" />
+        <item
+            android:id="@+id/news"
+            android:icon="@drawable/news"
+            android:title="@string/c_menu_news" />
+        <item
+            android:id="@+id/remove_ads"
+            android:icon="@drawable/remove_ads"
+            android:title="@string/c_menu_remove_ads" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"
+            android:title="@string/c_menu_settings" />
+
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/about_us"
+            android:title="@string/c_menu_about_us" />
+
+
+    </group>
+
+</menu>
