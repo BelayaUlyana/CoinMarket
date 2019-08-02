@@ -35,6 +35,15 @@ public class GraphFragment extends Fragment {
         TextView valueSupply = view.findViewById(R.id.valueSupply);
         TextView valueAmount = view.findViewById(R.id.valueAmount);
 
+        Integer rank = this.getArguments().getInt("rank");
+        Double marketCap = this.getArguments().getDouble("market_cap");
+        Double supply = this.getArguments().getDouble("supply");
+        Double amount = this.getArguments().getDouble("amount");
+
+        valueRank.setText(rank.toString());
+        valueMarketCap.setText(marketCap.toString());
+        valueSupply.setText(supply.toString());
+        valueAmount.setText(amount.toString());
         return view;
     }
 }

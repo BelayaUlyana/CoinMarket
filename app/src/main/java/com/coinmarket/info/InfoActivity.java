@@ -42,6 +42,16 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
             e.printStackTrace();
         }
 
+        Bundle bundle = new Bundle();
+        bundle.putInt("rank", datum.getCmcRank());
+        bundle.putDouble("market_cap", quote.getUSD().getMarketCap());
+        Log.d(TAG, "Activity supply = " + datum.getCirculatingSupply());
+        bundle.putDouble("supply", datum.getCirculatingSupply());
+        bundle.putDouble("amount",datum.getTotalSupply());
+        GraphFragment graphFragment = new GraphFragment();
+        graphFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().commit();
+
     }
 
     private void initViewPager() throws ParseException {
@@ -65,10 +75,10 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         percentChangeD7.setText(quote.getUSD().getStrPercentChange7d().append(" 7d"));
 
         SlideFragmentPagerAdapter pagerAdapter = new SlideFragmentPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(detailFragment, "Detail");
-        pagerAdapter.addFragment(exchangeFragment, "Exchange");
-        pagerAdapter.addFragment(graphFragment, "Graph");
-        pagerAdapter.addFragment(signalFragment, "Signal");
+        pagerAdapter.addFragment(graphFragment, "График");
+        pagerAdapter.addFragment(exchangeFragment, "Биржи");
+        pagerAdapter.addFragment(detailFragment, "Детали");
+        pagerAdapter.addFragment(signalFragment, "Сигналы");
 
         ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);

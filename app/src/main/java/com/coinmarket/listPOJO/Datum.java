@@ -64,6 +64,9 @@ public class Datum implements Parcelable {
         dateAdded = in.readString();
         name = in.readString();
         symbol = in.readString();
+        cmcRank = in.readInt();
+        circulatingSupply = in.readDouble();
+        totalSupply = in.readDouble();
     }
 
     public Integer getId() {
@@ -191,6 +194,9 @@ public class Datum implements Parcelable {
         parcel.writeString(dateAdded);
         parcel.writeString(name);
         parcel.writeString(symbol);
+        parcel.writeInt(cmcRank);
+        parcel.writeDouble(circulatingSupply);
+        parcel.writeDouble(totalSupply);
     }
 
 
