@@ -26,6 +26,7 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
     private Datum datum;
     private Quote quote;
     TextView tvPrice, percentChangeHR1, percentChangeHR24, percentChangeD7, tvDate;
+    GraphFragment graphFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,6 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         Log.d(TAG, "Activity supply = " + datum.getCirculatingSupply());
         bundle.putDouble("supply", datum.getCirculatingSupply());
         bundle.putDouble("amount",datum.getTotalSupply());
-        GraphFragment graphFragment = new GraphFragment();
         graphFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().commit();
 
@@ -58,7 +58,7 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
 
         DetailFragment detailFragment = DetailFragment.newInstance();
         ExchangeFragment exchangeFragment = ExchangeFragment.newInstance();
-        GraphFragment graphFragment = GraphFragment.newInstance();
+         graphFragment = GraphFragment.newInstance();
         signalFragment = SignalFragment.newInstance();
 
         tvPrice = findViewById(R.id.price);

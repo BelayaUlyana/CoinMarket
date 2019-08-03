@@ -11,11 +11,10 @@ import com.coinmarket.R;
 
 public class GraphFragment extends Fragment {
 
-
     public static GraphFragment newInstance() {
         GraphFragment fragment = new GraphFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        Bundle bundle = new Bundle();
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -26,7 +25,7 @@ public class GraphFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_graph, container, false);
@@ -35,10 +34,10 @@ public class GraphFragment extends Fragment {
         TextView valueSupply = view.findViewById(R.id.valueSupply);
         TextView valueAmount = view.findViewById(R.id.valueAmount);
 
-        Integer rank = this.getArguments().getInt("rank");
-        Double marketCap = this.getArguments().getDouble("market_cap");
-        Double supply = this.getArguments().getDouble("supply");
-        Double amount = this.getArguments().getDouble("amount");
+        Integer rank = bundle.getInt("rank");
+        Double marketCap = bundle.getDouble("market_cap");
+        Double supply = bundle.getDouble("supply");
+        Double amount = bundle.getDouble("amount");
 
         valueRank.setText(rank.toString());
         valueMarketCap.setText(marketCap.toString());
