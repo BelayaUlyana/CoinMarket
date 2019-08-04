@@ -42,15 +42,6 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
             e.printStackTrace();
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("rank", datum.getCmcRank());
-        bundle.putDouble("market_cap", quote.getUSD().getMarketCap());
-        Log.d(TAG, "Activity supply = " + datum.getCirculatingSupply());
-        bundle.putDouble("supply", datum.getCirculatingSupply());
-        bundle.putDouble("amount",datum.getTotalSupply());
-//        GraphFragment graphFragment = new GraphFragment();
-//        graphFragment.setArguments(bundle);
-//        getSupportFragmentManager().beginTransaction().commit();
 
     }
 
@@ -66,6 +57,22 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         percentChangeHR1 = findViewById(R.id.hr1);
         percentChangeHR24 = findViewById(R.id.hr24);
         percentChangeD7 = findViewById(R.id.d7);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("rank", datum.getCmcRank());
+        bundle.putDouble("market_cap", quote.getUSD().getMarketCap());
+        Log.d(TAG, "Activity supply = " + datum.getCirculatingSupply());
+        bundle.putDouble("supply", datum.getCirculatingSupply());
+        bundle.putDouble("amount", datum.getTotalSupply());
+        graphFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().commit();
+
+
+
+
+
+
 
         getSupportActionBar().setTitle(datum.getSymbol().concat(" ").concat(datum.getName()));
         tvPrice.setText(quote.getUSD().getPriceStr());
