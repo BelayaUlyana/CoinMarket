@@ -19,7 +19,6 @@ class MainPresenter {
         call.enqueue(new Callback<NameValuePair>() {
             @Override
             public void onResponse(retrofit2.Call<NameValuePair> call, Response<NameValuePair> response) {
-//                Log.e("LOG ", response.toString());
                 mainContract.showInfo(response.body());
                 mainContract.hideProgress();
             }

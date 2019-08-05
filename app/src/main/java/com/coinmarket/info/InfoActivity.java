@@ -62,16 +62,12 @@ public class InfoActivity extends AppCompatActivity implements SignalFragment.Si
         Bundle bundle = new Bundle();
         bundle.putInt("rank", datum.getCmcRank());
         bundle.putDouble("market_cap", quote.getUSD().getMarketCap());
-        Log.d(TAG, "Activity supply = " + datum.getCirculatingSupply());
+        Log.d(TAG, "circulating_supply = " + datum.getCirculatingSupply());
+        Log.d(TAG, "market_cap = " + quote.getUSD().getMarketCap());
         bundle.putDouble("supply", datum.getCirculatingSupply());
         bundle.putDouble("amount", datum.getTotalSupply());
         graphFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().commit();
-
-
-
-
-
 
 
         getSupportActionBar().setTitle(datum.getSymbol().concat(" ").concat(datum.getName()));

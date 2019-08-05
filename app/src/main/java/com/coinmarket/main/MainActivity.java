@@ -23,8 +23,6 @@ import com.coinmarket.listPOJO.Datum;
 import com.coinmarket.listPOJO.NameValuePair;
 import com.coinmarket.listPOJO.Quote;
 
-import static android.support.constraint.Constraints.TAG;
-
 public class MainActivity extends AppCompatActivity implements MainContract, NavigationView.OnNavigationItemSelectedListener {
 
     private MainAdapter adapter;
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements MainContract, Nav
             public void click(int pos, Datum datum, Quote quote) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("datum", datum);
-                Log.d(TAG, "MainActivity quote = " + quote);
                 intent.putExtra("quote", quote);
                 startActivity(intent);
             }
@@ -126,19 +123,19 @@ public class MainActivity extends AppCompatActivity implements MainContract, Nav
         int id = item.getItemId();
 
         if (id == R.id.favourites) {
-
+            Toast.makeText(this, "favourites", Toast.LENGTH_LONG);
         } else if (id == R.id.list) {
-
+            Toast.makeText(this, "list", Toast.LENGTH_LONG);
         } else if (id == R.id.notifications) {
-
+            Toast.makeText(this, "notifications", Toast.LENGTH_LONG);
         } else if (id == R.id.news) {
-
+            Toast.makeText(this, "news", Toast.LENGTH_LONG);
         } else if (id == R.id.remove_ads) {
-
+            Toast.makeText(this, "remove_ads", Toast.LENGTH_LONG);
         } else if (id == R.id.settings) {
-
+            Toast.makeText(this, "settings", Toast.LENGTH_LONG);
         } else if (id == R.id.about_us) {
-
+            Toast.makeText(this, "about_us", Toast.LENGTH_LONG);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

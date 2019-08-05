@@ -5,20 +5,20 @@
     android:height="60.123dp">
     <path
         android:pathData="M57.124 51.893H16.92c-1.657 0 -3 -1.343 -3 -3s1.343 -3 3 -3h40.203c1.657 0 3 1.343 3 3S58.781 51.893 57.124 51.893z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
     <path
         android:pathData="M57.124 33.062H16.92c-1.657 0 -3 -1.343 -3 -3s1.343 -3 3 -3h40.203c1.657 0 3 1.343 3 3C60.124 31.719 58.781 33.062 57.124 33.062z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
     <path
         android:pathData="M57.124 14.231H16.92c-1.657 0 -3 -1.343 -3 -3s1.343 -3 3 -3h40.203c1.657 0 3 1.343 3 3S58.781 14.231 57.124 14.231z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
     <path
         android:pathData="M8.058 11.463A4.029 4.029 0 0 1 0 11.463A4.029 4.029 0 0 1 8.058 11.463Z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
     <path
         android:pathData="M8.058 30.062A4.029 4.029 0 0 1 0 30.062A4.029 4.029 0 0 1 8.058 30.062Z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
     <path
         android:pathData="M8.058 48.661A4.029 4.029 0 0 1 0 48.661A4.029 4.029 0 0 1 8.058 48.661Z"
-        android:fillColor="#000000" />
+        android:fillColor="#FFFFFF" />
 </vector>
